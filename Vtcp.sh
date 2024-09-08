@@ -350,7 +350,7 @@ start_menu() {
     ;;
   *)
     clear
-    echo -e "${Error}:请输入正确数字 [0-99]"
+    echo -e "${Error}:请输入正确数字 [0-7]"
     sleep 5s
     start_menu
     ;;
