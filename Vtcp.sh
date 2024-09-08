@@ -22,6 +22,14 @@ if [ "$EUID" -ne 0 ]; then
   exit
 fi
 
+apt_update() {
+  apt update -y && \
+  apt upgrade -y && \
+  apt install -y --fix-broken && \
+  apt install -y wget curl socat vim jq && \
+  apt autoremove -y
+}
+
 #下载
 download_file() {
   url="$1"
@@ -634,6 +642,7 @@ check_status() {
   esac
 
 #############系统检测组件#############
+apt_update
 check_sys
 [[ "${OS_type}" == "Debian" ]] && [[ "${OS_type}" == "CentOS" ]] && echo -e "${Error} 本脚本不支持当前系统 ${release} !" && exit 1
 start_menu
